@@ -1,0 +1,34 @@
+{% extends "./menuPublico.html" %}
+
+{%block titulo%}
+Inicio 
+{%endblock%}
+
+
+{% block cuerpo%}
+
+   {% for c in confi %}
+      {% if c.habilitado == "si" %}
+      <section>
+          <h1>{{c.titulo}}</h1>
+      
+
+      <div class="banner">
+          <img src="../img/facultad.jpg" alt="Facultad de informatica de la UNLP View">
+          <p>{{c.descripcion}}</p><br>          
+          <div class='menuDelDia'>
+              <label>Menu del dia:</label><br>
+              {% for m in menu %}
+                <li>{{m.nombre}} </li><br>
+              {% endfor %}
+          </div>
+          <br><p class="mail">Mail de contacto: {{c.mailContacto}}</p>
+      </div>
+         {% else %}      
+           <h1 align="center">Sitio no disponible</h1>
+          {% endif %}
+      {% endfor %}
+      </section>
+  
+ 
+{% endblock %}
