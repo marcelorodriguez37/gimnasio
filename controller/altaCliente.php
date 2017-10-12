@@ -2,9 +2,9 @@
 	session_start();
 	require_once('./configTwig.php');
 	if (!empty($_POST["nombre"]) and !empty($_POST["apellido"]) and !empty($_POST["direccion"]) and 
-		!empty($_POST["dni"]) and !empty($_POST["fechaNac"]) and !empty($_POST["telefono"]) and 
-		!empty($_POST["fechaInscripcion"]) and !empty($_POST["observaciones"]))
+		!empty($_POST["dni"]) and !empty($_POST["fechaNac"]) and !empty($_POST["telefono"]) and !empty($_POST["observaciones"]))
 	{
+		
 		require_once('../model/ABMCliente.php');
 		$nombre=$_POST["nombre"];
 		$apellido=$_POST["apellido"];
@@ -12,7 +12,7 @@
 		$dni=$_POST["dni"];
 		$fechaNac=$_POST["fechaNac"];
 		$telefono=$_POST["telefono"];
-		$fechaInscripcion = $_POST["fechaInscripcion"];
+		$fechaInscripcion = date("Y-m-d");
 		$observaciones=$_POST["observaciones"];
 		agregarCliente($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion, $observaciones);
 		$datos['exito']='exito';

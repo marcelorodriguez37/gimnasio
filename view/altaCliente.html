@@ -2,7 +2,9 @@
 {% block contenido %}
     <div class="container-fluid">
         <!-- Breadcrumbs-->
-        
+        {% if exito != null %}
+            <h1>Se agregó exitosamente</h1>
+        {% endif %}
         
         <div class="card card-register mx-auto mt-5">
           <div class="card-header">Registrar Cliente</div>
@@ -49,7 +51,7 @@
                     <div class="col-md-12">
 
                         <label for="exampleInputEmail1">Observaciones</label>
-                        <textarea class="form-control"></textarea>
+                        <textarea class="form-control" name="observaciones"></textarea>
                         
                     </div>
                 </div>
