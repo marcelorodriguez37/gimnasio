@@ -40,8 +40,8 @@
 
                           {% if loop.last %}
 
-                            <td><a href="../controller/modificarCliente.php?id={{idCliente}}"><span class="icon-pencil"></span></a></td>
-                            <td><a href="../controller/eliminarCliente.php?id={{idCliente}}" onclick="return confirm('¿Estas seguro?')"><span class="icon-bin"></span></a></td>
+                            <td><a href="../controller/modificarCliente.php?id={{idCliente}}"><i class="fa fa-pencil-square-o"></i></a></td>
+                            <td><a href="../controller/eliminarCliente.php?id={{idCliente}}" onclick="return confirm('¿Estas seguro?')"><i class="fa fa-times" aria-hidden="true"></i></a></td>
                           {% endif %}
 
                         {% endfor %}
