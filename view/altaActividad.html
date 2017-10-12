@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block contenido %}
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        
+        
+        <div class="card card-register mx-auto mt-5">
+          <div class="card-header">Registrar Actividad</div>
+          <div class="card-body">
+            <form method="POST" action="../controller/altaCliente.php">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputName">Nombre</label>
+                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="nombre">
+                  </div>
+                  
+                </div>
+              </div>
+               
+              
+              <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-12">
+
+                        <label for="exampleInputEmail1">Observaciones</label>
+                        <textarea class="form-control"></textarea>
+                        
+                    </div>
+                </div>
+              </div>
+             
+              <a class="btn btn-primary btn-block" href="../controller/altaCliente.php">Agregar</a>
+            </form>
+            
+          </div>
+
+      </div>
+
+
+        
+    </div>
+{% endblock%}
