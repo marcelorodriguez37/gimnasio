@@ -2,19 +2,56 @@
 {% block contenido %}
 
     <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">LISTADOO</a>
-          </li>
-          <li class="breadcrumb-item active">Navbar</li>
-        </ol>
-        <h1>Navbar</h1>
-        <hr>
-        <p>The SB Admin navbar can be either fixed or static, and it supports the navbar-light and navbar-dark Bootstrap 4 classes.</p>
-        <a class="btn btn-primary" href="#" id="toggleNavPosition">Toggle Fixed/Static Navbar</a>
-        <a class="btn btn-primary" href="#" id="toggleNavColor">Toggle Navbar Color</a>
-        <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
-        <div style="height: 1000px;"></div>
+      
+        <div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-table"></i> Listado de Clientes</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>DNI</th>
+                      <th>Modificar</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>DNI</th>
+                      <th>Modificar</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                   {% for clientes in listaDeClientes %}
+                      <tr>
+                        {% for key, cliente in clientes %}
+
+                          {% if key == 'id' %}
+                            {% set idCliente = cliente %}
+                          {% else %}
+                            <td> {{ cliente }} </td>
+                          {% endif %}
+
+                          {% if loop.last %}
+
+                            <td><a href="../controller/modificarCliente.php?id={{idCliente}}"><span class="icon-pencil"></span></a></td>
+                            <td><a href="../controller/eliminarCliente.php?id={{idCliente}}" onclick="return confirm('¿Estas seguro?')"><span class="icon-bin"></span></a></td>
+                          {% endif %}
+
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        
+      </div>
     </div>
 {% endblock%}
