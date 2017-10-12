@@ -147,6 +147,17 @@
     <!-- Custom scripts for this page-->
     <script src="../js/sb-admin-datatables.min.js"></script>
     <script src="../js/sb-admin-charts.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#dataTable1').DataTable({
+                responsive: true,
+                "language": {
+                            "url": "../json/json-spanish.json"
+                            }
+            });
+        });
+    </script>
   </div>
 </body>
 
