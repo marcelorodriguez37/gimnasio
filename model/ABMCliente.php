@@ -36,9 +36,19 @@
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("SELECT id, nombre, apellido, dni FROM cliente WHERE habilitado=1");
-		$query->execute(array());
+		$query=$conexion -> getConexion() -> prepare("SELECT id, nombre, apellido, dni FROM cliente WHERE habilitado=?");
+		$query->execute(array(1));
 		$conexion->desconectarBD();
 		return ($query -> fetchAll(PDO::FETCH_ASSOC));
+	}
+
+	function buscarCliente($id){
+		require_once('conexion.php');
+		$conexion=new Conexion();
+		$conexion->conectarBD();
+		$query=$conexion -> getConexion() -> prepare("SELECT * FROM cliente WHERE id=? and habilitado=?");
+		$query->execute(array($id,1));
+		$conexion->desconectarBD();
+		return ($query -> fetchAll(PDO::FETCH_ASSOC));	
 	}
 ?>
