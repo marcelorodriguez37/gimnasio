@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2017 a las 06:28:51
--- Versión del servidor: 10.1.16-MariaDB
--- Versión de PHP: 5.6.24
+-- Tiempo de generación: 12-10-2017 a las 04:56:54
+-- Versión del servidor: 10.1.8-MariaDB
+-- Versión de PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,7 +31,8 @@ CREATE TABLE `abono` (
   `idPack` int(15) NOT NULL,
   `idCliente` int(20) NOT NULL,
   `fecha` date NOT NULL,
-  `monto` int(30) NOT NULL
+  `monto` int(30) NOT NULL,
+  `habilitado` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -42,7 +43,8 @@ CREATE TABLE `abono` (
 
 CREATE TABLE `actividad` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(40) NOT NULL
+  `nombre` varchar(40) NOT NULL,
+  `habilitado` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -54,7 +56,8 @@ CREATE TABLE `actividad` (
 CREATE TABLE `asistencia` (
   `id` int(11) NOT NULL,
   `idCliente` int(30) NOT NULL,
-  `fecha` datetime NOT NULL
+  `fecha` datetime NOT NULL,
+  `habilitado` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -72,7 +75,8 @@ CREATE TABLE `cliente` (
   `fechaNac` date DEFAULT NULL,
   `telefono` int(11) NOT NULL,
   `fechaInscripcion` date NOT NULL,
-  `observaciones` text
+  `observaciones` text,
+  `habilitado` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -84,9 +88,9 @@ CREATE TABLE `cliente` (
 CREATE TABLE `pack` (
   `id` int(11) NOT NULL,
   `nombre` varchar(40) NOT NULL,
-  `idActividad` int(11) NOT NULL,
   `precio` int(11) NOT NULL,
-  `descripcion` text
+  `descripcion` text,
+  `habilitado` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
