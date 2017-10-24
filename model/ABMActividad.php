@@ -21,7 +21,7 @@
 		return $ok;
 	}
 
-	function bajaAcividad($id){
+	function bajaActividad($id){
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
@@ -40,5 +40,34 @@
 		$query->execute(array());
 		$conexion->desconectarBD();
 		return ($query -> fetchAll(PDO::FETCH_ASSOC));
+	}
+	function existeActividad($nombre){
+		require_once('conexion.php');
+		$conexion=new Conexion();
+		$conexion->conectarBD();
+		$query=$conexion -> getConexion() -> prepare("SELECT id FROM actividad WHERE nombre=?");
+		$query->execute(array($nombre));
+		$conexion->desconectarBD();
+		return(!empty(($query -> fetchAll(PDO::FETCH_ASSOC))));
+		
+	}
+	function existeActividadAlmodificar($nombre,$id){
+		require_once('conexion.php');
+		$conexion=new Conexion();
+		$conexion->conectarBD();
+		$query=$conexion -> getConexion() -> prepare("SELECT * FROM actividad WHERE nombre=? and not id=?");
+		$query->execute(array($nombre,$id));
+		$conexion->desconectarBD();
+		return(!empty(($query -> fetchAll(PDO::FETCH_ASSOC))));
+		
+	}
+	function buscarActividad($id){
+		require_once('conexion.php');
+		$conexion=new Conexion();
+		$conexion->conectarBD();
+		$query=$conexion -> getConexion() -> prepare("SELECT * FROM actividad WHERE id=? and habilitado=?");
+		$query->execute(array($id,1));
+		$conexion->desconectarBD();
+		return ($query -> fetchAll(PDO::FETCH_ASSOC));	
 	}
 ?>

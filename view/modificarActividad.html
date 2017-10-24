@@ -6,22 +6,22 @@
             <h5>La actividad ya existe, intente con otro nombre.</h5>
         {% endif %}
         <div class="card card-register mx-auto mt-5">
-          <div class="card-header">Registrar Actividad</div>
+          <div class="card-header">Modificar Actividad</div>
           <div class="card-body">
-            <form method="POST" action="../controller/altaActividad.php">
+            <form method="POST" action="../controller/modActividad.php">
+            {% for act in actividad%}
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputName">Nombre</label>
-                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="nombre" required>
+                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="nombre" value="{{act.nombre}}" required>
+                    <input type="hidden" name="id" value="{{act.id}}">
                   </div>
                   
                 </div>
               </div>
-               
-              
-             
               <button class="btn btn-primary btn-block" > Agregar</button> 
+              {% endfor %}
             </form>
             
           </div>

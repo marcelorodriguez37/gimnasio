@@ -2,23 +2,21 @@
 {% block contenido %}
     <div class="container-fluid">
         <!-- Breadcrumbs-->
-        {% if exito != null %}
-            <h4>Se agregó exitosamente</h4>
-        {% endif %}
         
         <div class="card card-register mx-auto mt-5">
-          <div class="card-header">Registrar Cliente</div>
+          <div class="card-header">Modificar datos del Cliente</div>
           <div class="card-body">
-            <form method="POST" action="../controller/altaCliente.php">
+          {% for c in cliente %}
+            <form method="POST" action="../controller/modCliente.php">
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputName">Nombre</label>
-                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="nombre">
+                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="nombre" value="{{c.nombre}}">
                   </div>
                   <div class="col-md-6">
                     <label for="exampleInputLastName">Apellido</label>
-                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="apellido" >
+                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="apellido" value="{{c.apellido}}">
                   </div>
                 </div>
               </div>
@@ -26,11 +24,11 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputPassword1">DNI</label>
-                    <input class="form-control"  type="number" name="dni" >
+                    <input class="form-control"  type="number" name="dni" value="{{c.dni}}">
                   </div>
                   <div class="col-md-6">
                     <label for="exampleConfirmPassword">Telefono</label>
-                    <input class="form-control"  type="text" name="telefono">
+                    <input class="form-control"  type="text" name="telefono" value="{{c.telefono}}">
                   </div>
                 </div>
               </div>
@@ -38,11 +36,11 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputPassword1">Fecha Nacimiento</label>
-                    <input class="form-control" type="date" name="fechaNac" >
+                    <input class="form-control" type="date" name="fechaNac" value="{{c.fechaNac}}" >
                   </div>
                   <div class="col-md-6">
                     <label for="exampleConfirmPassword">Dirección</label>
-                    <input class="form-control" type="text" name="direccion">
+                    <input class="form-control" type="text" name="direccion" value="{{c.direccion}}">
                   </div>
                 </div>
                 </div>
@@ -51,16 +49,16 @@
                     <div class="col-md-12">
 
                         <label for="exampleInputEmail1">Observaciones</label>
-                        <textarea class="form-control" name="observaciones"></textarea>
+                        <textarea class="form-control" name="observaciones">{{c.observaciones}}</textarea>
                         
                     </div>
                 </div>
               </div>
   
-            <button class="btn btn-primary btn-block" type="submit">Agregar</button>
+            <button class="btn btn-primary btn-block" type="submit">Guardar</button>
 
             </form>
-            
+           {% endfor %} 
           </div>
 
       </div>
