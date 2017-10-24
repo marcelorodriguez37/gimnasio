@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+{% block contenido %}
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        
+        {% if existe == 'no existe' %}
+            <h1>El cliente no existe</h1>
+        {% endif %}
+        {% if existe == 'existe' %}
+            <h1>Asistencia registrada!!</h1>
+        {% endif %}
+        <div class="card card-register mx-auto mt-5">
+          <div class="card-header">Registrar Asistencia</div>
+          <div class="card-body">
+            <form method="POST" action="../controller/altaAsistencia.php">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputName">DNI</label>
+                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="DNI">
+                  </div>
+                  
+                </div>
+              </div>
+                          
+              <button class="btn btn-primary btn-block" type="submit">Agregar</button>
+            </form>
+            
+          </div>
+
+      </div>
+
+
+        
+    </div>
+{% endblock%}
