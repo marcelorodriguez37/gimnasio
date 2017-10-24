@@ -3,6 +3,7 @@
 	require_once('./configTwig.php');
 	if (!empty($_POST["DNI"]) ){
 		require_once('../model/ABMAsistencia.php');
+		require_once('../model/ABMCliente.php');
 		$dni=$_POST["DNI"];
 		$cliente=existe($dni);
 		if($cliente == null){

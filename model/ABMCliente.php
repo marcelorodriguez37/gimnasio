@@ -42,13 +42,14 @@
 		return ($query -> fetchAll(PDO::FETCH_ASSOC));
 	}
 
-	function buscarCliente($id){
+
+	function existe($dni){
 		require_once('conexion.php');
-		$conexion=new Conexion();
+		$conexion = new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("SELECT * FROM cliente WHERE id=? and habilitado=?");
-		$query->execute(array($id,1));
+		$query = $conexion -> getConexion() -> prepare("SELECT * FROM cliente WHERE dni = ?");
+		$query->execute(array($dni));
 		$conexion->desconectarBD();
-		return ($query -> fetchAll(PDO::FETCH_ASSOC));	
+		return $query -> fetchObject();
 	}
 ?>
