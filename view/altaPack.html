@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block contenido %}
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        {% if existePack != null %}
+            <h5>La actividad ya existe, intente con otro nombre.</h5>
+        {% endif %}
+        <div class="card card-register mx-auto mt-5">
+          <div class="card-header">Registrar Pack</div>
+          <div class="card-body">
+            <form method="POST" action="../controller/altaPack.php">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputName">Nombre</label>
+                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="nombre" required>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="form-group">
+                  {% for actividades in listaDeActividades %}
+                      <div class="form-row">
+                          <div class="col-md-6">
+                          {% for key, actividad in actividades %}
+                                {% if key == 'id' %}
+                                     <input  type="checkbox" aria-describedby="nameHelp" name="arregloDeActividades[]" value="{{actividad}}" >
+                                {% else %}
+                                <label for="exampleInputName">{{actividad}}</label>
+                                {% endif %}
+                           {% endfor %}
+                          </div>
+                      </div>
+                  {% endfor %}
+              </div>
+              <button class="btn btn-primary btn-block" > Agregar</button> 
+            </form>
+            
+          </div>
+
+      </div>        
+    </div>
+{% endblock%}
