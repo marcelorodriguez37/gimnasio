@@ -2,7 +2,12 @@
 {% block contenido %}
 
     <div class="container-fluid">
-      
+        {% if correcto != null %}
+            <h5>Se agrego correctamente.</h5>
+        {% endif %}
+        {% if MODIFICARcorrecto != null %}
+            <h5>Se modifico correctamente.</h5>
+        {% endif %} 
         <div class="card mb-3">
             <div class="card-header">
               <i class="fa fa-table"></i> Listado de Actividades</div>
@@ -12,7 +17,6 @@
                   <thead>
                     <tr>
                       <th>Nombre</th>
-                      <th>Observación</th>
                       <th>Modificar</th>
                       <th>Eliminar</th>
                     </tr>
@@ -31,8 +35,8 @@
 
                           {% if loop.last %}
 
-                            <td><a href="../controller/modificarActividad.php?id={{idActividad}}"><span class="icon-pencil"></span></a></td>
-                            <td><a href="../controller/eliminarActividad.php?id={{idActividad}}" onclick="return confirm('¿Estas seguro?')"><span class="icon-bin"></span></a></td>
+                            <td><a href="../controller/modificarActividad.php?id={{idActividad}}"><i class="fa fa-pencil-square-o"></i></a></td>
+                            <td><a href="../controller/eliminarActividad.php?id={{idActividad}}" onclick="return confirm('¿Estas seguro?')"><i class="fa fa-times" aria-hidden="true"></i></a></td>
                           {% endif %}
 
                         {% endfor %}
