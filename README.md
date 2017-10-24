@@ -1,2 +1,2 @@
 # gimnasio
-CHELO PUTOOOOOOO
+CHELO te la comes doblada
