@@ -45,7 +45,7 @@
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("SELECT id FROM actividad WHERE nombre=?");
+		$query=$conexion -> getConexion() -> prepare("SELECT id FROM actividad WHERE nombre=? and habilitado=1");
 		$query->execute(array($nombre));
 		$conexion->desconectarBD();
 		return(!empty(($query -> fetchAll(PDO::FETCH_ASSOC))));
@@ -55,7 +55,7 @@
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("SELECT * FROM actividad WHERE nombre=? and not id=?");
+		$query=$conexion -> getConexion() -> prepare("SELECT * FROM actividad WHERE nombre=? and not id=? and habilitado=1");
 		$query->execute(array($nombre,$id));
 		$conexion->desconectarBD();
 		return(!empty(($query -> fetchAll(PDO::FETCH_ASSOC))));

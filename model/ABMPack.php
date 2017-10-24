@@ -3,8 +3,8 @@
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("INSERT INTO pack (nombre, precio, descripcion, habilitado) values (?, ?, ?, ?)");
-		$query->execute(array($nombre, $precio, $descripcion, 1));
+		$query=$conexion -> getConexion() -> prepare("INSERT INTO pack (nombre, habilitado) values (?, ?)");
+		$query->execute(array($nombre, 1));
 		$conexion->desconectarBD();
 		$ok=true;
 		return $ok;
