@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% block contenido %}
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        {% if exito != null %}
+            <h4>Se agregó exitosamente</h4>
+        {% endif %}
+        
+        <div class="card card-register mx-auto mt-5">
+          <div class="card-header">Registrar Pago</div>
+          <div class="card-body">
+            <form method="POST" action="../controller/altaPago.php">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputName">Actividad</label>
+                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="actividad">
+                  </div>
+                </div>
+              </div>
+               <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputPassword1">DNI Cliente</label>
+                    <input class="form-control"  type="number" name="dni" >
+                  </div>
+                </div>
+              </div>
+               <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputPassword1">Monto</label>
+                    <input class="form-control" type="number" name="monto" >
+                  </div>
+                  
+                </div>
+                </div>
+            
+  
+            <button class="btn btn-primary btn-block" type="submit">Agregar</button>
+
+            </form>
+            
+          </div>
+
+      </div>
+
+
+        
+    </div>
+{% endblock%}

@@ -32,14 +32,6 @@
 	return $res;
 }
 
-	function existe($dni){
-		require_once('conexion.php');
-		$conexion = new Conexion();
-		$conexion->conectarBD();
-		$query = $conexion -> getConexion() -> prepare("SELECT * FROM cliente WHERE dni = ?");
-		$query->execute(array($dni));
-		$conexion->desconectarBD();
-		return $query -> fetchObject();
-	}
+	
 
 ?>

@@ -10,15 +10,16 @@
           <div class="card-header">Registrar Cliente</div>
           <div class="card-body">
             <form method="POST" action="../controller/altaCliente.php">
+            {% for key,c in cliente %}
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputName">Nombre</label>
-                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="nombre">
+                    <h6>{{c.nombre}}</h6>
                   </div>
                   <div class="col-md-6">
                     <label for="exampleInputLastName">Apellido</label>
-                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="apellido" >
+                     <h6>{{c.apellido}}</h6>
                   </div>
                 </div>
               </div>
@@ -26,11 +27,11 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputPassword1">DNI</label>
-                    <input class="form-control"  type="number" name="dni" >
+                    <h6>{{c.dni}}</h6>
                   </div>
                   <div class="col-md-6">
                     <label for="exampleConfirmPassword">Telefono</label>
-                    <input class="form-control"  type="text" name="telefono">
+                    <h6>{{c.telefono}}</h6>
                   </div>
                 </div>
               </div>
@@ -38,11 +39,11 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputPassword1">Fecha Nacimiento</label>
-                    <input class="form-control" type="date" name="fechaNac" >
+                    <h6>{{c.fechaNac}}</h6>
                   </div>
                   <div class="col-md-6">
                     <label for="exampleConfirmPassword">Dirección</label>
-                    <input class="form-control" type="text" name="direccion">
+                    <h6>{{c.direccion}}</h6>
                   </div>
                 </div>
                 </div>
@@ -51,7 +52,7 @@
                     <div class="col-md-12">
 
                         <label for="exampleInputEmail1">Observaciones</label>
-                        <textarea class="form-control" name="observaciones"></textarea>
+                       <h6>{{c.observaciones}}</h6>
                         
                     </div>
                 </div>
@@ -61,14 +62,13 @@
                     <div class="col-md-12">
 
                         <label for="exampleInputEmail1">Imagen</label>
-                        <input class="form-control" type="file" name="imagen"></input>
+                        <img src="">
                         
                     </div>
                 </div>
               </div>
   
-            <button class="btn btn-primary btn-block" type="submit">Agregar</button>
-
+            {% endfor %}
             </form>
             
           </div>

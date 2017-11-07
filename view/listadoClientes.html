@@ -14,19 +14,12 @@
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>DNI</th>
+                      <th>Ver</th>
                       <th>Modificar</th>
                       <th>Eliminar</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>DNI</th>
-                      <th>Modificar</th>
-                      <th>Eliminar</th>
-                    </tr>
-                  </tfoot>
+                  
                   <tbody>
                    {% for clientes in listaDeClientes %}
                       <tr>
@@ -39,7 +32,7 @@
                           {% endif %}
 
                           {% if loop.last %}
-
+                            <td><a href="../controller/verCliente.php?id={{idCliente}}"><i class="fa fa-pencil-square-o"></i></a></td>
                             <td><a href="../controller/modificarCliente.php?id={{idCliente}}"><i class="fa fa-pencil-square-o"></i></a></td>
                             <td><a href="../controller/eliminarCliente.php?id={{idCliente}}" onclick="return confirm('¿Estas seguro?')"><i class="fa fa-times" aria-hidden="true"></i></a></td>
                           {% endif %}

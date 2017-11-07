@@ -61,13 +61,13 @@
 		return(!empty(($query -> fetchAll(PDO::FETCH_ASSOC))));
 		
 	}
-	function buscarActividad($id){
+	function buscarActividad($nombre){
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("SELECT * FROM actividad WHERE id=? and habilitado=?");
-		$query->execute(array($id,1));
+		$query=$conexion -> getConexion() -> prepare("SELECT * FROM actividad WHERE nombre=? and habilitado=?");
+		$query->execute(array($nombre,1));
 		$conexion->desconectarBD();
-		return ($query -> fetchAll(PDO::FETCH_ASSOC));	
+		return $query -> fetchObject();	
 	}
 ?>
