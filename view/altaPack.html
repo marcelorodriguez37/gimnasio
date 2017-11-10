@@ -15,23 +15,44 @@
                     <label for="exampleInputName">Nombre</label>
                     <input class="form-control"  type="text" aria-describedby="nameHelp" name="nombre" required>
                   </div>
+                  <div class="col-md-6">
+                    <label for="exampleInputName">Precio</label>
+                    <input class="form-control"  type="number" aria-describedby="nameHelp" name="precio" required>
+                  </div>
                   
                 </div>
               </div>
               <div class="form-group">
-                  {% for actividades in listaDeActividades %}
-                      <div class="form-row">
-                          <div class="col-md-6">
-                          {% for key, actividad in actividades %}
-                                {% if key == 'id' %}
-                                     <input  type="checkbox" aria-describedby="nameHelp" name="arregloDeActividades[]" value="{{actividad}}" >
-                                {% else %}
-                                <label for="exampleInputName">{{actividad}}</label>
-                                {% endif %}
-                           {% endfor %}
-                          </div>
+                  <div class="form-row">
+                      <div class="col-md-6">
+                        <label for="exampleInputName">Descripción</label>
+                        <textarea class="form-control" name="descripcion"></textarea>
                       </div>
-                  {% endfor %}
+                     
+                      <div class="col-md-6">
+                         <label for="exampleInputName">Actividades</label>
+                      
+                          {% for actividades in listaDeActividades %}
+                                  
+                                  {% for key, actividad in actividades %}
+                                        {% if key == 'id' %}
+                                         <div class="form-row">
+                                        
+                                             <input  type="checkbox"  name="arregloDeActividades[]" value="{{actividad}}" >
+                                        
+                                        {% else %}
+                                        <div class="col-md-3">
+                                          <label>{{actividad}}</label>
+                                        </div>
+                                         </div>
+                                        {% endif %}
+                                   {% endfor %}
+                                  
+                              
+                          {% endfor %}
+                     </div>
+                  </div>
+                  
               </div>
               <button class="btn btn-primary btn-block" > Agregar</button> 
             </form>

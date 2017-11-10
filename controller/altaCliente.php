@@ -2,7 +2,7 @@
 	session_start();
 	require_once('./configTwig.php');
 	if (!empty($_POST["nombre"]) and !empty($_POST["apellido"]) and !empty($_POST["direccion"]) and 
-		!empty($_POST["dni"]) and !empty($_POST["fechaNac"]) and !empty($_POST["telefono"]) and !empty($_POST["observaciones"]))
+		!empty($_POST["dni"]) and !empty($_POST["fechaNac"]) and !empty($_POST["telefono"]) and !empty($_POST["observaciones"]) and !empty($_POST["imagen"]))
 	{
 		
 		require_once('../model/ABMCliente.php');
@@ -14,9 +14,15 @@
 		$telefono=$_POST["telefono"];
 		$fechaInscripcion = date("Y-m-d");
 		$observaciones=$_POST["observaciones"];
-		agregarCliente($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion, $observaciones);
-		$datos['exito']='exito';
-		renderizar2('altaCliente.html',$datos);
+		$imagen = $_POST["imagen"];
+		$result = agregarCliente($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion,$imagen, $observaciones);
+		if($result){
+			$datos['mensaje']='Se realizo el registro del paciente con exito';
+			header('Location: listadoClientes.php');
+		}else{
+			$datos['mensaje']='No se pudo registrar al paciente';
+			header('Location: altaCliente.php');
+		}
 	}
 	else
 	{

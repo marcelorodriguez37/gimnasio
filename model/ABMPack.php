@@ -1,15 +1,18 @@
 <?php
-	function agregarPack($nombre, $arregloActividad){
+	function agregarPack($nombre,$arregloActividad,$precio,$descripcion){
+		
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("INSERT INTO pack (nombre, habilitado) values (?, ?)"); 
-		$query->execute(array($nombre, 1));
+		$query=$conexion -> getConexion() -> prepare("INSERT INTO pack (nombre, precio,descripcion, habilitado) values (?,?,?,?)"); 
+		$query->execute(array($nombre,$precio,$descripcion,1));
 
 		for ($i=0; $i<sizeof($arregloActividad) ; $i++) { 
 			$id_actividad = (int)($arregloActividad[$i]);
+			var_dump($arregloActividad);
+			die();
 			$query=$conexion -> getConexion() -> prepare("INSERT INTO pack_actividad (id_pack, id_actividad) values (?, ?)");
-			$query->execute(array(15,$id_actividad));
+			$query->execute(array('34',$id_actividad));
 		}
 		
 

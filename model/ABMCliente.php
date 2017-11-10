@@ -1,10 +1,10 @@
 <?php
-	function agregarCliente($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion, $observaciones){
+	function agregarCliente($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion,$imagen, $observaciones){
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("INSERT INTO cliente (nombre, apellido, direccion, dni, fechaNac, telefono, fechaInscripcion, observaciones, habilitado) values (?, ?, ?, ?, ?, ?, ?, ?,?)");
-		$query->execute(array($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion, $observaciones,1));
+		$query=$conexion -> getConexion() -> prepare("INSERT INTO cliente (nombre, apellido, direccion, dni, fechaNac, telefono, fechaInscripcion, imagen, observaciones, habilitado) values (?, ?, ?, ?,?, ?, ?, ?, ?,?)");
+		$query->execute(array($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion, $imagen, $observaciones,1));
 		$conexion->desconectarBD();
 		$ok=true;
 		return $ok;
