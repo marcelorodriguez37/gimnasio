@@ -9,7 +9,7 @@
         <div class="card card-register mx-auto mt-5">
           <div class="card-header">Registrar Cliente</div>
           <div class="card-body">
-            <form method="POST" action="../controller/altaCliente.php">
+            <form method="POST" action="../controller/altaCliente.php"  enctype="multipart/form-data">
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
@@ -61,7 +61,7 @@
                     <div class="col-md-12">
 
                         <label for="exampleInputEmail1">Imagen</label>
-                        <input class="form-control" type="file" name="imagen"></input>
+                        <input class="form-control" type="file" name="archivo[]"></input>
                         
                     </div>
                 </div>

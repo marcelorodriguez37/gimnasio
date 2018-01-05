@@ -62,18 +62,21 @@
                     <div class="col-md-12">
 
                         <label for="exampleInputEmail1">Imagen</label>
-                        <img src="">
+                        <img src="../imagenesClientes/{{c.imagen}}">
                         
                     </div>
                 </div>
               </div>
-  
+             
+             <button class="btn btn-primary btn-block"><a href="../controller/modificarCliente.php?id={{c.id}}">Modificar</a></button>
             {% endfor %}
             </form>
             
           </div>
 
-      </div>
+        
+        </div>
+
 
 
         

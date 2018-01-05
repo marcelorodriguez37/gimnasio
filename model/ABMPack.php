@@ -1,18 +1,22 @@
 <?php
 	function agregarPack($nombre,$arregloActividad,$precio,$descripcion){
-		
+
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
 		$query=$conexion -> getConexion() -> prepare("INSERT INTO pack (nombre, precio,descripcion, habilitado) values (?,?,?,?)"); 
 		$query->execute(array($nombre,$precio,$descripcion,1));
 
+
+		$query=$conexion -> getConexion() -> prepare("SELECT pack.id FROM pack ORDER BY pack.id DESC LIMIT 1"); 
+		$query->execute(array());
+		$id_pack =  ($query-> fetchAll(PDO::FETCH_ASSOC)[0]['id']);
+		
 		for ($i=0; $i<sizeof($arregloActividad) ; $i++) { 
 			$id_actividad = (int)($arregloActividad[$i]);
-			var_dump($arregloActividad);
-			die();
+			
 			$query=$conexion -> getConexion() -> prepare("INSERT INTO pack_actividad (id_pack, id_actividad) values (?, ?)");
-			$query->execute(array('34',$id_actividad));
+			$query->execute(array($id_pack,$id_actividad));
 		}
 		
 
@@ -20,24 +24,7 @@
 		$ok=true;
 		return $ok;
 
-		/*try { 
-	    $dbh = new PDO('mysql:host=localhost;dbname=gimnasio', 'root', ''); 
-
-	    $stmt = $dbh->prepare("INSERT INTO pack (nombre, precio, descripcion, habilitado) VALUES(?,?,?,?)"); 
-
-	    try { 
-	        $dbh->beginTransaction(); 
-	        $stmt->execute( array('user',17, 'dasdasdsa', 1)); 
-	        $dbh->commit(); 
-	        var_dump($dbh->lastInsertId()); 
-	    } catch(PDOExecption $e) { 
-	        $dbh->rollback(); 
-	        print "Error!: " . $e->getMessage() . "</br>"; 
-	    } 
-		} catch( PDOExecption $e ) { 
-		    print "Error!: " . $e->getMessage() . "</br>"; 
-		} 
-		die();*/
+	
 	}
 
 	function modificarPack($nombre, $precio, $descripcion, $id){
@@ -80,5 +67,23 @@
 		$conexion->desconectarBD();
 		return(!empty(($query -> fetchAll(PDO::FETCH_ASSOC))));
 		
+	}
+	function buscarPack($id){
+		require_once('conexion.php');
+		$conexion = new Conexion();
+		$conexion->conectarBD();
+		$query = $conexion -> getConexion() -> prepare("SELECT * FROM pack WHERE id = ?");
+		$query->execute(array($id));
+		$conexion->desconectarBD();
+		return ($query -> fetchAll(PDO::FETCH_ASSOC));
+	}
+	function buscarActividadesDelPack($id){
+		require_once('conexion.php');
+		$conexion = new Conexion();
+		$conexion->conectarBD();
+		$query = $conexion -> getConexion() -> prepare("SELECT id_actividad FROM pack_actividad WHERE id_pack = ?");
+		$query->execute(array($id));
+		$conexion->desconectarBD();
+		return ($query -> fetchAll(PDO::FETCH_ASSOC));
 	}
 ?>
