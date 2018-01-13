@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2017 a las 05:19:39
+-- Tiempo de generación: 13-01-2018 a las 19:31:12
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -47,6 +47,17 @@ CREATE TABLE `actividad` (
   `habilitado` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `actividad`
+--
+
+INSERT INTO `actividad` (`id`, `nombre`, `habilitado`) VALUES
+(10, 'GAP', 1),
+(11, 'Spinning', 1),
+(12, 'Prueba', 0),
+(13, 'MusculaciÃ³n', 1),
+(14, 'AXE', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -75,9 +86,20 @@ CREATE TABLE `cliente` (
   `fechaNac` date DEFAULT NULL,
   `telefono` int(11) NOT NULL,
   `fechaInscripcion` date NOT NULL,
+  `imagen` varchar(200) DEFAULT NULL,
   `observaciones` text,
   `habilitado` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `nombre`, `apellido`, `direccion`, `dni`, `fechaNac`, `telefono`, `fechaInscripcion`, `imagen`, `observaciones`, `habilitado`) VALUES
+(1, 'Brenda', 'Dominguez aaa', 'la merced 29', 2147483647, '2299-09-23', 2147483647, '2018-01-13', NULL, 'no quiere trabajar!!', 1),
+(2, 'unNuevo', 'Cliente', 'un direccion cualquiera 123', 229392929, '2001-02-12', 29121212, '2017-11-09', '20170322_113143-01.jpeg', 'una observaciÃ³n cualquiera', 1),
+(3, 'roo', 'roooo', 'eoo', 1212, '0000-00-00', 2323, '2018-01-03', NULL, '', 1),
+(4, 'Rodrigo ', 'Torales', 'paraguay', 919291, '1994-09-13', 19919292, '2018-01-03', 'eeaf4436-4bb9-4fe6-90e0-d2b4bd1fbd90.jpg', 'nos abandono', 1);
 
 -- --------------------------------------------------------
 
@@ -93,6 +115,19 @@ CREATE TABLE `pack` (
   `habilitado` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `pack`
+--
+
+INSERT INTO `pack` (`id`, `nombre`, `precio`, `descripcion`, `habilitado`) VALUES
+(15, 'Promo 1', 420, 'Lunes a miercoles 18 hs', 1),
+(31, 'Promo 2', 230, 'Lunes a Viernes 20 hs', 1),
+(32, 'nuevo pack', 120, 'descripcion del nuevo pack', 1),
+(33, 'nueva promo ', 299, 'descripcion nueva promo ', 1),
+(34, 'prueba 3', 2000, 'decripcion de prueba 3, bren se durmio. wacha! ', 1),
+(35, 'prueba 4 ', 200, 'descripcion oreuba 4', 1),
+(36, 'prueba de pack 123', 123, 'descripcion de prueba de pack 123', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -100,9 +135,28 @@ CREATE TABLE `pack` (
 --
 
 CREATE TABLE `pack_actividad` (
+  `id` int(11) NOT NULL,
   `id_pack` int(11) NOT NULL,
   `id_actividad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pack_actividad`
+--
+
+INSERT INTO `pack_actividad` (`id`, `id_pack`, `id_actividad`) VALUES
+(1, 15, 10),
+(2, 15, 13),
+(3, 31, 13),
+(4, 31, 11),
+(5, 35, 10),
+(6, 35, 11),
+(7, 36, 11),
+(8, 36, 13),
+(9, 32, 1),
+(10, 33, 1),
+(11, 34, 1),
+(12, 33, 2);
 
 --
 -- Índices para tablas volcadas
@@ -144,6 +198,7 @@ ALTER TABLE `pack`
 -- Indices de la tabla `pack_actividad`
 --
 ALTER TABLE `pack_actividad`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_pack` (`id_pack`),
   ADD KEY `id_actividad` (`id_actividad`);
 
@@ -160,7 +215,7 @@ ALTER TABLE `abono`
 -- AUTO_INCREMENT de la tabla `actividad`
 --
 ALTER TABLE `actividad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `asistencia`
 --
@@ -170,12 +225,17 @@ ALTER TABLE `asistencia`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `pack`
 --
 ALTER TABLE `pack`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+--
+-- AUTO_INCREMENT de la tabla `pack_actividad`
+--
+ALTER TABLE `pack_actividad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Restricciones para tablas volcadas
 --
@@ -187,29 +247,10 @@ ALTER TABLE `abono`
   ADD CONSTRAINT `abono_ibfk_1` FOREIGN KEY (`idPack`) REFERENCES `pack` (`id`);
 
 --
--- Filtros para la tabla `actividad`
---
-ALTER TABLE `actividad`
-  ADD CONSTRAINT `actividad_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pack_actividad` (`id_actividad`);
-
---
 -- Filtros para la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
   ADD CONSTRAINT `asistencia_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`id`);
-
---
--- Filtros para la tabla `pack`
---
-ALTER TABLE `pack`
-  ADD CONSTRAINT `pack_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pack_actividad` (`id_pack`);
-
---
--- Filtros para la tabla `pack_actividad`
---
-ALTER TABLE `pack_actividad`
-  ADD CONSTRAINT `pack_actividad_ibfk_1` FOREIGN KEY (`id_pack`) REFERENCES `pack` (`id`),
-  ADD CONSTRAINT `pack_actividad_ibfk_2` FOREIGN KEY (`id_actividad`) REFERENCES `actividad` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

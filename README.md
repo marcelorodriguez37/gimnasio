@@ -1,13 +1,14 @@
 # gimnasio
 
-Buenos dÃ­a Bibi,
-Como estas ?
-Tuvimos unos inconvenientes, los cuales no nos permitio terminar el sistema en la fecha estimada establecida, te pedimos disculpas por ello.
-Como acordamos, te pasamos el status:
-* El  desarrollo del sistema se encuentra en un 90%. 
-* El Por el momento seguimos con etapa de pruebas, para una mejor estabilidad. 
+Se agrego:
+imagen del cliente, se agrego el campo imagen en la tabla cliente. el mismo es de tipo varchar 200 . 
 
-Te adjunto imagenes de los avances ya realizados. 
-Saludos, 
+Hacer:
+Brenda: ver detalle de promociones y asistencia por cliente.
+Chelo: asistencia por rango  e ingresos por rango
 
-Equipo MBR | sistemas informaticos.
+FALTA HACER al 13 de enero: 
+--boton modificar (en ver cliente) se debe cambiar el color de las letras.
+-- agregar (en modificar cliente) la imagen a  modificar. 
+-- modificar el tamaño de la imagen (en ver cliente) 
+
