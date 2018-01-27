@@ -1,0 +1,80 @@
+{% extends "index.html" %}
+{% block contenido %}
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        {% if existe == 'no existe' %}
+            <h4>El cliente no existe.</h4>
+        {% endif %}
+        {% if error == 'errorFecha' %}
+            <h4>La fecha desde tiene que ser menor a la fecha hasta</h4>
+        {% endif %}
+        
+        <div class="card card-register mx-auto mt-5">
+          <div class="card-header">Buscar asistencia de un cliente</div>
+          <div class="card-body">
+            <form method="POST" action="../controller/asistenciaPorRango.php">
+               <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputPassword1">DNI Cliente</label>
+                    <input class="form-control"  type="number" name="dni" >
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="form-row">
+
+                  <div class="col-md-6">
+                    <label for="exampleInputPassword1">Fecha desde:</label>
+                    <input size="16" type="date" value="" class="form-control" name="fDesde">
+                  </div>  
+
+                  <div class="col-md-6">
+                    <label for="exampleInputPassword1">Fecha hasta:</label>
+                    <input size="16" type="date" value="" class="form-control" name="fHasta">
+                  </div>  
+
+                </div>
+              </div>
+
+
+            <button class="btn btn-primary btn-block" type="submit">Buscar</button>
+
+            </form>
+            
+          </div>
+
+      </div>        
+    </div>
+
+    <div class="container-fluid">
+      
+        <div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-table"></i> Listado de Clientes</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Fecha</th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                   {% for fechas in listaPorRango %}
+                      <tr>
+                          <td>{{ nombre }}</td>                          
+                          <td> {{ fechas.fecha | date("m/d/Y")}} </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        
+      </div>
+    </div>
+{% endblock%}

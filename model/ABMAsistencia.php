@@ -22,15 +22,26 @@
 	}
 
 	function listaDeAsistencia() {
-	require_once('conexion.php');
-	$conexion = new Conexion();
-	$conexion->conectarBD();
-	$query = $conexion -> getConexion() -> prepare("SELECT a.idCliente, a.fecha FROM asistencia a WHERE a.habilitado = 1");
-	$query->execute(array());
-	$res = $query -> fetchAll(PDO::FETCH_ASSOC);
-	$conexion->desconectarBD();
-	return $res;
-}
+		require_once('conexion.php');
+		$conexion = new Conexion();
+		$conexion->conectarBD();
+		$query = $conexion -> getConexion() -> prepare("SELECT a.idCliente, a.fecha FROM asistencia a WHERE a.habilitado = 1");
+		$query->execute(array());
+		$res = $query -> fetchAll(PDO::FETCH_ASSOC);
+		$conexion->desconectarBD();
+		return $res;
+	}
+
+	function asistenciaPorRango($idCliente, $fechaDesde, $fechaHasta){
+		require_once('conexion.php');
+		$conexion = new Conexion();
+		$conexion->conectarBD();
+		$query = $conexion -> getConexion() -> prepare("SELECT a.fecha FROM asistencia a WHERE a.habilitado = ? and a.idCliente=? and a.fecha between ? and ?");
+		$query->execute(array(1, $idCliente, $fechaDesde, $fechaHasta));
+		$res = $query -> fetchAll(PDO::FETCH_ASSOC);
+		$conexion->desconectarBD();
+		return $res;
+	}
 
 	
 
