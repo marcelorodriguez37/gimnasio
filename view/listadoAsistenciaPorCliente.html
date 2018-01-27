@@ -27,7 +27,11 @@
                           {% if key == 'id' %}
                             {% set idCliente = cliente %}
                           {% else %}
-                            <td> {{ cliente }} </td>
+                            {% if key == 'fecha' %}
+                                <td> {{ cliente | date("d/m/Y") }}</td>
+                            {% else %}
+                                <td> {{ cliente }} </td>
+                             {% endif %}   
                           {% endif %}
 
                         {% endfor %}

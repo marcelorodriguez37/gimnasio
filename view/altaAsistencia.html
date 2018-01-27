@@ -4,10 +4,10 @@
         <!-- Breadcrumbs-->
         
         {% if existe == 'no existe' %}
-            <h1>El cliente no existe</h1>
+            <div class="alert alert-danger">El cliente no existe</div>
         {% endif %}
         {% if existe == 'existe' %}
-            <h1>Asistencia registrada!!</h1>
+            <div class="alert alert-info">Asistencia registrada</div>
         {% endif %}
         <div class="card card-register mx-auto mt-5">
           <div class="card-header">Registrar Asistencia</div>

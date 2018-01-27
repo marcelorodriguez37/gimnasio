@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	require_once('./configTwig.php');
-	if (!empty($_POST["nombre"]) and !empty($_POST["apellido"]) and !empty($_POST["direccion"]) and 
+	/**if (!empty($_POST["nombre"]) and !empty($_POST["apellido"]) and !empty($_POST["direccion"]) and 
 		!empty($_POST["dni"]) and !empty($_POST["fechaNac"]) and !empty($_POST["telefono"]) and !empty($_POST["observaciones"]))
-	{
+	{**/
 		
 		require_once('../model/ABMCliente.php');
 
@@ -20,10 +20,10 @@
 		//$datos['exito']='exito';
 		$datos['listaDeClientes'] = listaClientes();
 		renderizar2('listadoClientes.html',$datos);
-	}
+	/**}
 	else
 	{
 		renderizar2('altaCliente.html',array());	
-	}	
+	}	**/
 	
 ?>

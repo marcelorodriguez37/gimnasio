@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <!-- Breadcrumbs-->
         {% if exito != null %}
-            <h4>Se agregó exitosamente</h4>
+            <div class="alert alert-info">No se puede ver el cliente.</div>
         {% endif %}
         
         <div class="card card-register mx-auto mt-5">
-          <div class="card-header">Registrar Cliente</div>
+          <div class="card-header">Datos del Cliente</div>
           <div class="card-body">
-            <form method="POST" action="../controller/altaCliente.php">
+            
             {% for key,c in cliente %}
               <div class="form-group">
                 <div class="form-row">
@@ -39,7 +39,7 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputPassword1">Fecha Nacimiento</label>
-                    <h6>{{c.fechaNac}}</h6>
+                    <h6>{{c.fechaNac| date("d/m/Y")}}</h6>
                   </div>
                   <div class="col-md-6">
                     <label for="exampleConfirmPassword">Dirección</label>
@@ -59,18 +59,22 @@
               </div>
               <div class="form-group">
                 <div class="form-row">
-                    <div class="col-md-12">
 
                         <label for="exampleInputEmail1">Imagen</label>
-                        <img src="../imagenesClientes/{{c.imagen}}">
-                        
+                    <div class="col-md-12">
+                        {%if c.imagen == NULL %}
+                            <div class="alert alert-info">No tiene imagen agregada.</div>
+                        {%else%}
+                            <img src="../imagenesClientes/{{c.imagen}}" style="width: 100%; height: 100%">
+                        {%endif%}
                     </div>
                 </div>
               </div>
+
              
-             <button class="btn btn-primary btn-block"><a href="../controller/modificarCliente.php?id={{c.id}}">Modificar</a></button>
+             <a href="../controller/modificarCliente.php?id={{c.id}}"><button class="btn btn-primary btn-block">Modificar</button></a>
             {% endfor %}
-            </form>
+            
             
           </div>
 

@@ -67,7 +67,7 @@
                    {% for fechas in listaPorRango %}
                       <tr>
                           <td>{{ nombre }}</td>                          
-                          <td> {{ fechas.fecha | date("m/d/Y")}} </td>
+                          <td> {{ fechas.fecha | date("d/m/Y")}} </td>
                       </tr>
                     {% endfor %}
                   </tbody>
