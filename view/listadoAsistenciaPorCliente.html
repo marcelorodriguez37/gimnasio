@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block contenido %}
+
+    <div class="container-fluid">
+      
+        <div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-table"></i> Listado de Asistencias</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>DNI</th>
+                      <th>Fecha Asistencia</th>
+                      
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                   {% for clientes in listaDeAsistencia %}
+                      <tr>
+                        {% for key, cliente in clientes %}
+
+                          {% if key == 'id' %}
+                            {% set idCliente = cliente %}
+                          {% else %}
+                            <td> {{ cliente }} </td>
+                          {% endif %}
+
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        
+      </div>
+    </div>
+{% endblock%}

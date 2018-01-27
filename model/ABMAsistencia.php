@@ -25,7 +25,7 @@
 		require_once('conexion.php');
 		$conexion = new Conexion();
 		$conexion->conectarBD();
-		$query = $conexion -> getConexion() -> prepare("SELECT a.idCliente, a.fecha FROM asistencia a WHERE a.habilitado = 1");
+		$query = $conexion -> getConexion() -> prepare("SELECT c.nombre, c.apellido, c.dni , a.fecha FROM asistencia a INNER JOIN CLIENTE C ON(c.id = a.idCliente) WHERE a.habilitado = 1");
 		$query->execute(array());
 		$res = $query -> fetchAll(PDO::FETCH_ASSOC);
 		$conexion->desconectarBD();
@@ -43,6 +43,5 @@
 		return $res;
 	}
 
-	
 
 ?>
