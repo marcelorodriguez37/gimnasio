@@ -5,6 +5,8 @@
 		$conexion->conectarBD();
 		$query=$conexion -> getConexion() -> prepare("INSERT INTO actividad (nombre, habilitado) values (?, ?)");
 		$query->execute(array($nombre, 1));
+		$query=$conexion -> getConexion() -> prepare("INSERT INTO pack (nombre, precio, habilitado) values (?, ?, ?)");
+		$query->execute(array($nombre, 0, 1));
 		$conexion->desconectarBD();
 		$ok=true;
 		return $ok;
@@ -68,6 +70,6 @@
 		$query=$conexion -> getConexion() -> prepare("SELECT * FROM actividad WHERE nombre=? and habilitado=?");
 		$query->execute(array($nombre,1));
 		$conexion->desconectarBD();
-		return $query -> fetchObject();	
+		return ($query->fetchObject());	
 	}
 ?>

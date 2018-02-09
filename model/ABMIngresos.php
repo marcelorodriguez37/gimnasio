@@ -19,4 +19,15 @@
 		$conexion->desconectarBD();
 		return $res;
 	}
+
+	function actualizar($dni){
+		require_once('conexion.php');
+		$conexion = new Conexion();
+		$conexion->conectarBD();
+		$query = $conexion -> getConexion() -> prepare("SELECT nombre, apellido FROM cliente WHERE dni=?");
+		$query->execute(array($dni));
+		$res = $query -> fetch(PDO::FETCH_ASSOC);
+		$conexion->desconectarBD();
+		return $res;
+	}
 ?>

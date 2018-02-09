@@ -14,27 +14,47 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputName">Actividad</label>
-                    <input class="form-control"  type="text" aria-describedby="nameHelp" name="actividad">
+                    <select class="form-control"  type="text" aria-describedby="nameHelp" name="actividad" id="actividad">
+                      <option selected="selected">Selecionar actividad</option>
+                      {% for pack in listaPacks %}
+                        <option value="{{ pack.id }}">{{ pack.nombre }}</option>
+                      {% endfor %}
+                    </select>
                   </div>
                 </div>
               </div>
-               <div class="form-group">
+              <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputPassword1">DNI Cliente</label>
-                    <input class="form-control"  type="number" name="dni" >
+                    <input class="form-control"  type="number" name="dni" id="dni" >
                   </div>
                 </div>
               </div>
-               <div class="form-group">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputPassword1">Nombre</label>
+                    <input class="form-control" value="" disabled type="text" name="nombre" id="nombre" >
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputPassword1">Apellido</label>
+                    <input class="form-control" value="" disabled type="text" name="apellido" id="apellido">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputPassword1">Monto</label>
-                    <input class="form-control" type="number" name="monto" >
-                  </div>
-                  
+                    <input class="form-control" type="number" name="monto" id="monto" readonly="readonly">
+                  </div>                  
                 </div>
-                </div>
+              </div>
             
   
             <button class="btn btn-primary btn-block" type="submit">Agregar</button>
@@ -48,4 +68,32 @@
 
         
     </div>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script>
+        $('#dni').keyup(function(){
+          var $this = $(this);
+          $.ajax({
+              data: {dni: $this.val()} ,
+              url: '../controller/actualizarDatos.php',
+              type: 'POST',              
+              dataType:'json',           
+          }).done(function(datos){
+              $("#nombre").val(datos.nombre);
+              $("#apellido").val(datos.apellido);
+          })
+        });
+    </script>
+    <script>
+        $('#actividad').change(function(){
+          var $valor=$("#actividad option:selected").val();
+          $.ajax({
+              data: {idPack: $valor} ,
+              url: '../controller/actualizarDatos.php',
+              type: 'POST',              
+              dataType:'json',           
+          }).done(function(datos){
+              $("#monto").val(datos[0].precio);
+          })
+        });
+    </script>
 {% endblock%}

@@ -86,4 +86,14 @@
 		$conexion->desconectarBD();
 		return ($query -> fetchAll(PDO::FETCH_ASSOC));
 	}
+
+	function montoPack($id){
+		require_once('conexion.php');
+		$conexion = new Conexion();
+		$conexion->conectarBD();
+		$query = $conexion -> getConexion() -> prepare("SELECT precio FROM pack WHERE id = ?");
+		$query->execute(array($id));
+		$conexion->desconectarBD();
+		return ($query -> fetchAll(PDO::FETCH_ASSOC));
+	}
 ?>
