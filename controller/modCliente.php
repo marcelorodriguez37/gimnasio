@@ -16,8 +16,27 @@
 		$telefono=$_POST["telefono"];
 		$fechaInscripcion = date("Y-m-d");
 		$observaciones=$_POST["observaciones"];
-		modificarCliente($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion, $observaciones,$id);
+		
 		//$datos['exito']='exito';
+		$carpetaDestino="../imagenesClientes/";
+		
+		$i=0;
+		if($_FILES["archivo"]["type"][$i]=="image/jpeg" || $_FILES["archivo"]["type"][$i]=="image/pjpeg" || $_FILES["archivo"]["type"][$i]=="image/gif" || $_FILES["archivo"]["type"][$i]=="image/png"){
+			$_FILES["archivo"]["name"][0] = $id+'.jpg';
+			$origen=$_FILES["archivo"]["tmp_name"][0];
+                    $destino=$carpetaDestino.$_FILES["archivo"]["name"][0];
+ 
+                    # movemos el archivo
+                    if(@move_uploaded_file($origen, $destino))
+                    {
+                       echo "";
+                    }else{
+                        echo "<br>No se ha podido guardar el archivo: ".$_FILES["archivo"]["name"][$i];
+                    }
+		}else{
+			//error ese archivo es invalido, debe ser .jpg , .png o .gif
+		}
+		modificarCliente($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion, $observaciones,$id);
 		$datos['listaDeClientes'] = listaClientes();
 		renderizar2('listadoClientes.html',$datos);
 	/**}
@@ -25,5 +44,5 @@
 	{
 		renderizar2('altaCliente.html',array());	
 	}	**/
-	
+
 ?>

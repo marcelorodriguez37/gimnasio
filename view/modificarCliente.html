@@ -7,7 +7,7 @@
           <div class="card-header">Modificar datos del Cliente</div>
           <div class="card-body">
           {% for c in cliente %}
-            <form method="POST" action="../controller/modCliente.php">
+            <form method="POST" action="../controller/modCliente.php" enctype="multipart/form-data">
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
@@ -59,9 +59,46 @@
 
                         <label for="exampleInputEmail1">Imagen</label>
                     <div class="col-md-12">
-
-                        <img src="../imagenesClientes/{{c.imagen}}" style="width: 100%; height: 100%">
+                    {% if c.imagen == NULL%}
+                        No tiene ninguna imagen cargada
                         
+                        <input class="form-control" type="file" name="archivo[]"></input>
+                    {%else%}
+
+                        <input id= "imagen" type="checkbox" name="{{c.imagen}}" value="{{c.imagen}}" checked onclick="nuevaIMG()" />  
+
+                        <div id="imagenActual" >
+                            Destilde para cambiar de imagen.
+                            <img src="../imagenesClientes/{{c.imagen}}" style="width: 100%; height: 100%">
+                        </div>
+                        <div id="nuevaIMAGEN" style='display:none;'>
+                            <input id="fileupload" class="form-control" type="file" name="archivo[]" ></input>
+                        </div>
+                        <script type="text/javascript">
+                  
+                            function nuevaIMG() {
+                                
+                               var chk = document.getElementById('imagen');
+                                 if(chk.checked){
+                                            rese();
+                                         document.getElementById('imagenActual').style.display='block';
+                                        document.getElementById('nuevaIMAGEN').style.display='none';
+
+                                    }
+                                    else
+                                    {
+                                        document.getElementById('imagenActual').style.display='none';
+                                        document.getElementById('nuevaIMAGEN').style.display='block';
+                                    }
+                            }
+                            function rese(){
+                  
+                                  document.getElementById('fileupload').value = "";
+                                 
+                              }
+
+                        </script>
+                     {%endif %}   
                     </div>
                 </div>
               </div>

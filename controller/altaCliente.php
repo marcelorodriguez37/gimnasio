@@ -25,9 +25,9 @@
                     # movemos el archivo
                     if(@move_uploaded_file($origen, $destino))
                     {
-                        echo "<br>".$_FILES["archivo"]["name"][$i]." movido correctamente";
+                        echo "<br>".$_FILES["archivo"]["name"][$i]." guardado correctamente";
                     }else{
-                        echo "<br>No se ha podido mover el archivo: ".$_FILES["archivo"]["name"][$i];
+                        echo "<br>No se ha podido guardar el archivo: ".$_FILES["archivo"]["name"][$i];
                     }
 		}else{
 			//error ese archivo es invalido, debe ser .jpg , .png o .gif

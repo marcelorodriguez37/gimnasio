@@ -14,8 +14,8 @@
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("UPDATE cliente SET nombre=?, apellido=?, direccion=?, dni=?, fechaNac=?, telefono=?, fechaInscripcion=?, observaciones=? WHERE id=?");
-		$query->execute(array($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion, $observaciones, $id));
+		$query=$conexion -> getConexion() -> prepare("UPDATE cliente SET nombre=?, apellido=?, direccion=?, dni=?, fechaNac=?, telefono=?, fechaInscripcion=?, imagen=?, observaciones=? WHERE id=?");
+		$query->execute(array($nombre, $apellido, $direccion, $dni, $fechaNac, $telefono, $fechaInscripcion,$id, $observaciones, $id));
 		$conexion->desconectarBD();
 		$ok=true;
 		return $ok;
