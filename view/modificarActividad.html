@@ -9,19 +9,18 @@
           <div class="card-header">Modificar Actividad</div>
           <div class="card-body">
             <form method="POST" action="../controller/modActividad.php">
-            {% for act in actividad%}
+            {% for act in actividad %}
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="exampleInputName">Nombre</label>
                     <input class="form-control"  type="text" aria-describedby="nameHelp" name="nombre" value="{{act.nombre}}" required>
                     <input type="hidden" name="id" value="{{act.id}}">
-                  </div>
-                  
+                  </div>                  
                 </div>
               </div>
               <button class="btn btn-primary btn-block" > Agregar</button> 
-              {% endfor %}
+            {% endfor %}
             </form>
             
           </div>

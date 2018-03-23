@@ -67,9 +67,9 @@
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("SELECT * FROM actividad WHERE nombre=? and habilitado=?");
+		$query=$conexion -> getConexion() -> prepare("SELECT * FROM actividad WHERE id=? and habilitado=?");
 		$query->execute(array($nombre,1));
 		$conexion->desconectarBD();
-		return ($query->fetchObject());	
+		return ($query->fetchAll(PDO::FETCH_ASSOC));	
 	}
 ?>

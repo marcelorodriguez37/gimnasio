@@ -1,4 +1,4 @@
 <?php
 	session_start();
-    header('Location: ./controller/indexcontroller.php');
+    header('Location: ./controller/listadoClientes.php');
 ?>
