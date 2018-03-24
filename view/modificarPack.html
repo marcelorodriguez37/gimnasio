@@ -34,37 +34,24 @@
                          <label for="exampleInputName">Actividades</label>
 
                       
-                          {% for actividades in listaDeActividades %}
-                                  
-                                  {% for key, actividad in actividades %}
-                                        {% if key == 'id' %}
-
+                         {% for  key, actividad in actividadesPack %}
+                                       
                                               <div class="form-row">
 
-                                              {% for keyap, ap in actividadesPack %}
-
-                                                  {% if keyap == actividad %}
-                                                      <input  type="checkbox"  name="arregloDeActividades[]" value="{{actividad}}" checked>
-                                                  {% else %}
-                                                      <input  type="checkbox"  name="arregloDeActividades[]" value="{{actividad}}" >
-                                                  {% endif%}
-                                              {% endfor %}
                                               
-                                        {% else %}
-                                            <div class="col-md-3">
-                                             
-                                              <label>{{actividad}}</label>
-                                            </div>
-                                             </div>
-                                        {% endif %}
+                                                  <div>
+                                                      <h6>{{actividad.nombre}}</h6>
+                                                  </div>
+                                                 
+                                              </div>
+                                              
+                                      
                                    {% endfor %}
-                                  
-                              
-                          {% endfor %}
                      </div>
                   </div>
                   
               </div>
+               <input type="hidden" name="id" value="{{p.id}}">
               <button class="btn btn-primary btn-block" > Agregar</button> 
               {% endfor %}
             </form>

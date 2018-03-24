@@ -31,8 +31,9 @@
 		require_once('conexion.php');
 		$conexion=new Conexion();
 		$conexion->conectarBD();
-		$query=$conexion -> getConexion() -> prepare("UPDATE pack SET nombre=?, precio, descripcion WHERE id=?");
+		$query=$conexion -> getConexion() -> prepare("UPDATE pack SET nombre=?, precio=?, descripcion=? WHERE id=?");
 		$query->execute(array($nombre, $precio, $descripcion, $id));
+		
 		$conexion->desconectarBD();
 		$ok=true;
 		return $ok;
@@ -81,7 +82,7 @@
 		require_once('conexion.php');
 		$conexion = new Conexion();
 		$conexion->conectarBD();
-		$query = $conexion -> getConexion() -> prepare("SELECT id_actividad FROM pack_actividad WHERE id_pack = ?");
+		$query = $conexion -> getConexion() -> prepare("SELECT a.nombre FROM pack_actividad pa INNER JOIN pack p ON(pa.id_pack = p.id) INNER JOIN actividad a ON(a.id = pa.id_actividad) WHERE pa.id_pack = ?");
 		$query->execute(array($id));
 		$conexion->desconectarBD();
 		return ($query -> fetchAll(PDO::FETCH_ASSOC));

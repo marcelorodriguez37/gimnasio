@@ -1,0 +1,74 @@
+{% extends "index.html" %}
+{% block contenido %}
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        {% if exito != null %}
+            <div class="alert alert-info">No se puede ver el pack.</div>
+        {% endif %}
+        
+        <div class="card card-register mx-auto mt-5">
+          <div class="card-header">Datos del Pack</div>
+          <div class="card-body">
+            
+            {% for key,c in pack %}
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputName">Nombre</label>
+                    <h6>{{c.nombre}}</h6>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="exampleInputLastName">Precio</label>
+                     <h6>{{c.precio}}</h6>
+                  </div>
+                </div>
+              </div>
+               <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="exampleInputPassword1">Descripcion</label>
+                    <h6>{{c.descripcion}}</h6>
+
+                  </div>
+                  <div class="col-md-6">
+                         <label for="exampleInputName">Actividades</label>
+
+                      
+                        
+                                  
+                                  {% for  key, actividad in actividadesPack %}
+                                       
+                                              <div class="form-row">
+
+                                              
+                                                  <div>
+                                                      <h6>{{actividad.nombre}}</h6>
+                                                  </div>
+                                                 
+                                              </div>
+                                              
+                                      
+                                   {% endfor %}
+                                  
+                         
+                     </div>
+                </div>
+
+              </div>
+               
+             
+              </div>
+
+            {% endfor %}
+            
+            
+          </div>
+
+        
+        </div>
+
+
+
+        
+    </div>
+{% endblock%}
